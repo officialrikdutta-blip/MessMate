@@ -15,17 +15,17 @@
   </div>
 
   <div class="container">
-    
+
     <div class="card">
       <h2 class="section-title">Saare Feedbacks</h2>
       {% if feedbacks %}
         {% for fb in feedbacks %}
         <div class="feedback-item">
           <div class="top">
-            <span class="name">{{ fb.name }}</span>
-            <span class="date">{{ fb.date }}</span>
+            <span class="name">{{ fb[1] }}</span>
+            <span class="date">{{ fb[3] }}</span>
           </div>
-          <div class="msg">{{ fb.message }}</div>
+          <div class="msg">{{ fb[2] }}</div>
         </div>
         {% endfor %}
       {% else %}
@@ -40,9 +40,9 @@
           <tr><th>Name</th><th>Choice</th><th>Date</th></tr>
           {% for v in votes %}
           <tr>
-              <td>{{ v.username | capitalize }}</td>
-              <td>{{ v.choice }}</td>
-              <td>{{ v.date }}</td>
+              <td>{{ v[1] | capitalize }}</td>
+              <td>{{ v[2] }}</td>
+              <td>{{ v[3] }}</td>
           </tr>
           {% endfor %}
         </table>
