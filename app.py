@@ -24,20 +24,27 @@ ADMIN_PASSWORD = 'admin123'
 def get_db_connection():
     if HAS_MYSQL:
         try:
-            # Render ke Environment Variables se lega
-            host = os.environ.get('DB_HOST') or os.environ.get('MYSQL_HOST')
-            user = os.environ.get('DB_USER') or os.environ.get('MYSQL_USER', 'avnadmin')
-            password = os.environ.get('DB_PASSWORD') or os.environ.get('MYSQL_PASSWORD')
-            port = int(os.environ.get('DB_PORT') or os.environ.get('MYSQL_PORT', '21156'))
-            database = os.environ.get('DB_NAME') or os.environ.get('MYSQL_DATABASE', 'defaultdb')
+            host = os.environ.get('DB_HOST')
+            user = os.environ.get('DB_USER')
+            password = os.environ.get('DB_PASSWORD')
+            port = os.environ.get('DB_PORT')
+            database = os.environ.get('DB_NAME')
 
-            if host and host!= 'test' and password:
+            # Agar Render pe 5 variables hai toh Aiven connect karega
+            if host and user and password and database:
+                print(f"--> Trying Aiven MySQL: {host}")
                 return mysql.connector.connect(
-                    host=host, user=user, password=password, port=port, database=database
+                    host=host,
+                    user=user,
+                    password=password,
+                    port=int(port) if port else 21156,
+                    database=database,
+                    autocommit=True
                 )
         except Exception as e:
             print(f"MySQL Cloud Connection Failed: {e}")
 
+    print("--> Using Local SQLite (Fallback)")
     conn = sqlite3.connect('messmate.db', check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
@@ -68,7 +75,8 @@ def init_db():
         cur.execute('''CREATE TABLE IF NOT EXISTS feedback (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100), message TEXT, date VARCHAR(50))''')
 
     cur.execute("SELECT COUNT(*) FROM menus")
-    if cur.fetchone()[0] == 0:
+    count = cur.fetchone()[0]
+    if count == 0:
         default_menus = [
             ("Monday", "Puri Sabji", "Rajma Chawal", "Paneer + Roti"),
             ("Tuesday", "Idli Sambhar", "Chole Bhature", "Fried Rice"),
@@ -123,8 +131,15 @@ def menu():
     cur.close()
     db.close()
     order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
-    rows = sorted(rows, key=lambda x: order.index(x[0] if not sqlite else x['day']) if (x[0] if not sqlite else x['day']) in order else 99)
-    weekly_menu = {row[0] if not sqlite else row['day']: {"breakfast": row[1] if not sqlite else row['breakfast'], "lunch": row[2] if not sqlite else row['lunch'], "dinner": row[3] if not sqlite else row['dinner']} for row in rows}
+    def get_day(r):
+        return r['day'] if sqlite else r[0]
+    rows = sorted(rows, key=lambda x: order.index(get_day(x)) if get_day(x) in order else 99)
+    weekly_menu = {}
+    for row in rows:
+        if sqlite:
+            weekly_menu[row['day']] = {"breakfast": row['breakfast'], "lunch": row['lunch'], "dinner": row['dinner']}
+        else:
+            weekly_menu[row[0]] = {"breakfast": row[1], "lunch": row[2], "dinner": row[3]}
     today_name = datetime.now(ZoneInfo("Asia/Kolkata")).strftime("%A")
     today_menu = weekly_menu.get(today_name)
     name = session.get('username', 'Admin').capitalize() if 'student' in session else 'Admin'
@@ -216,7 +231,13 @@ def admin_menu_edit():
     rows = cur.fetchall()
     cur.close()
     db.close()
-    weekly_menu_db = {row[0]: {"breakfast": row[1], "lunch": row[2], "dinner": row[3]} for row in rows}
+    weekly_menu_db = {}
+    for row in rows:
+        # Handle both sqlite Row and mysql tuple
+        try:
+            weekly_menu_db[row[0]] = {"breakfast": row[1], "lunch": row[2], "dinner": row[3]}
+        except:
+            weekly_menu_db[row['day']] = {"breakfast": row['breakfast'], "lunch": row['lunch'], "dinner": row['dinner']}
     return render_template('admin_menu.html', full_menu=weekly_menu_db)
 
 @app.route('/admin/feedback')
