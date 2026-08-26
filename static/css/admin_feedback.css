@@ -1,0 +1,85 @@
+body {
+  background: #0f0f0f;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 20px auto;
+}
+.header h1 { color: #ffcc80; margin: 0; }
+.btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+.btn-logout { background: #333; color: #fff; border: 1px solid #444; }
+.btn-home { background: #ffcc80; color: #000; }
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #1e1e1e;
+  border-radius: 12px;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+.feedback-item {
+  padding: 18px 20px;
+  border-bottom: 1px solid #333;
+}
+.feedback-item:last-child { border-bottom: none; }
+.top { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.name { font-weight: bold; color: #ffcc80; }
+.date { font-size: 12px; color: #888; }
+.msg { color: #ddd; font-size: 15px; }
+.empty { padding: 50px; text-align: center; color: #888; }
+
+.btn-menu {
+    background: #2e7d32;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.section-title {
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+.vote-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.vote-table th, .vote-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.vote-table th {
+    background: #f5f5f5;
+}
+
+.card {
+  background: #2b2b2b;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.section-title {
+  margin-bottom: 15px;
+  color: white;
+  font-size: 22px;
+  border-left: 4px solid #ffd700;
+  padding-left: 10px;
+}

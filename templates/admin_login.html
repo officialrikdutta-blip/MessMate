@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login - MessMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
+</head>
+<body>
+  <div class="login-card">
+    
+    <h2>Admin Login</h2>
+    <p class="sub">Only for Hostel Admin</p>
+    
+    <form method="POST">
+      <label>Username</label>
+      <input type="text" name="username" value="admin" required>
+      
+      <label>Password</label>
+      <input type="password" name="password" value="admin123" required>
+      
+      <button type="submit">Login as Admin</button>
+    </form>
+    <a href="/login" class="back-link">← Student Login</a>
+  </div>
+</body>
+</html>

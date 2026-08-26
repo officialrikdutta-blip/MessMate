@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="vote-container">
+    <div class="vote-card">
+      <h2>Aaj Mess me Khaoge?</h2>
+      <form method="POST">
+        <button type="submit" name="choice" value="Yes" class="btn-yes">Haan, Khaunga </button>
+        <button type="submit" name="choice" value="No" class="btn-no">Nahi, Skip </button>
+      </form>
+      <br>
+      <a href="/vote-result" class="link-orange">Result Dekho</a>
+    </div>
+  </div>
+</body>
+</html>

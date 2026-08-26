@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Menu Update - MESS-MATE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_menu.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Menu Update <span>(Admin)</span></h1>
+        <p class="subtitle">Yaha se daily ka menu change karo</p>
+
+        <form method="POST" class="menu-form">
+            <div class="input-group">
+                <label>Day:</label>
+                <select name="day" required>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Breakfast:</label>
+                <input type="text" name="breakfast" placeholder="Ex: Puri Sabji" required>
+            </div>
+
+            <div class="input-group">
+                <label>Lunch:</label>
+                <input type="text" name="lunch" placeholder="Ex: Rajma Chawal" required>
+            </div>
+
+            <div class="input-group">
+                <label>Dinner:</label>
+                <input type="text" name="dinner" placeholder="Ex: Paneer + Roti" required>
+            </div>
+
+            <button type="submit" class="update-btn">Update Menu</button>
+        </form>
+
+        <a href="/admin/feedback" class="back-link">← Back to Admin Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feedback - MessMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback.css') }}">
+</head>
+<body>
+  <div class="card">
+    <h2>Complaint / Feedback</h2>
+    <p>Mess ke baare me apna sach batao</p>
+
+    {% if request.method == 'POST' %}
+      <div class="success"> Feedback bhej diya! Thank you!</div>
+    {% endif %}
+
+    <form method="POST">
+      <label>Tera Naam</label>
+      <input type="text" name="name" placeholder="Ex: Riya" required>
+      
+      <label>Mess ke baare me likho...</label>
+      <textarea name="message" rows="4" placeholder="Khaana kaisa tha?" required></textarea>
+      
+      <button type="submit">Bhej De</button>
+    </form>
+
+    <div class="links">
+      <a href="/">← Home</a>
+      <a href="/menu">Menu Dekho</a>
+    </div>
+  </div>
+</body>
+</html>

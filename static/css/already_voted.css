@@ -1,0 +1,50 @@
+body {
+  background-color: #0f0f0f;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.vote-box {
+  text-align: center;
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border: 1px solid #333;
+}
+.vote-box h1 {
+  color: #ffcc80;
+  margin-bottom: 10px;
+}
+.vote-box p {
+  color: #aaa;
+  margin-bottom: 30px;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  transition: 0.3s;
+}
+.btn-result {
+  background: #ffcc80;
+  color: #000;
+}
+.btn-result:hover {
+  background: #ffb74d;
+}
+.btn-home {
+  border: 1px solid #ffcc80;
+  color: #ffcc80;
+}
+.btn-home:hover {
+  background: #ffcc80;
+  color: #000;
+}

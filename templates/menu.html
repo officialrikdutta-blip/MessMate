@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Today's Menu</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+</head>
+<body>
+
+<h1>TODAY'S <span>MENU</span></h1>
+
+<div class="box">
+<h3>Aaj hai - {{ today_name }}</h3>
+<h2>{{ today_menu['breakfast'] }} / {{ today_menu['lunch'] }} / {{ today_menu['dinner'] }}</h2>
+<p>Breakfast: {{ today_menu['breakfast'] }}<br>
+Lunch: {{ today_menu['lunch'] }}<br>
+Dinner: {{ today_menu['dinner'] }}</p>
+</div>
+
+<h3>Poore Hafte ka Menu:</h3>
+<div style="width: 400px; margin: auto;">
+{% for day, meals in full_menu.items() %}
+<div class="card">
+<strong>{{ day }}:</strong> Breakfast - {{ meals['breakfast'] }}, Lunch - {{ meals['lunch'] }}, Dinner - {{ meals['dinner'] }}
+</div>
+{% endfor %}
+</div>
+
+<a href="/"><button>Go Back</button></a>
+
+</body>
+</html>

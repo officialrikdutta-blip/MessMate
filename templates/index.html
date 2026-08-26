@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEES FOOD</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>MESS<span>-MATE</span></h1>
+
+        {% if session.username %}
+        <div class="welcome-box">
+          Welcome, {{ session.username | capitalize }}! 
+        </div>
+        {% endif %}
+
+        <p>Welcome to MESS-MATE!</p>
+        <button onclick="window.location.href='/menu'">Check Menu</button>
+        <a href="/vote" style="text-decoration:none;">
+            <button style="margin-top:10px;">Aaj Mess Khaoge? - Vote Karo</button>
+        </a>
+        <br>
+        <a href="/feedback" style="text-decoration:none;">
+            <button style="margin-top:10px;">Feedback / Complaint</button>
+        </a>
+        <br>
+            <br><br>
+    <a href="/logout" style="color:#888; font-size:13px; text-decoration:none; border:1px solid #444; padding:6px 15px; border-radius:20px;">
+      Logout → Login Page
+    </a>
+    </div>
+</body>
+</html>

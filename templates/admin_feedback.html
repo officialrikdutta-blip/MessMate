@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Feedbacks - MessMate</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_feedback.css') }}">
+</head>
+<body>
+  <div class="header">
+    <h1>Admin Panel</h1>
+    <div>
+      <a href="/admin/menu" class="btn btn-menu">Menu Update</a>
+      <a href="/" class="btn btn-home">Home</a>
+      <a href="/logout" class="btn btn-logout">Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <div class="card">
+      <h2 class="section-title">Saare Feedbacks</h2>
+      {% if feedbacks %}
+        {% for fb in feedbacks %}
+        <div class="feedback-item">
+          <div class="top">
+            <span class="name">{{ fb.name }}</span>
+            <span class="date">{{ fb.date }}</span>
+          </div>
+          <div class="msg">{{ fb.message }}</div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty">Abhi tak koi feedback nahi aaya </div>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Aaj Ka Vote - Kaun Kya Kiya ({{ votes|length }})</h2>
+      {% if votes %}
+        <table class="vote-table">
+          <tr><th>Name</th><th>Choice</th><th>Date</th></tr>
+          {% for v in votes %}
+          <tr>
+              <td>{{ v.username | capitalize }}</td>
+              <td>{{ v.choice }}</td>
+              <td>{{ v.date }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <div class="empty">Aaj abhi tak koi vote nahi hua 😴</div>
+      {% endif %}
+    </div>
+
+  </div>
+</body>
+</html>
