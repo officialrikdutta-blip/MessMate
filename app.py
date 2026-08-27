@@ -17,7 +17,7 @@ USERS = {
     "riya": "riya123", "aman": "aman123", "priya": "priya456",
     "rohit": "rohit789", "sneha": "sneha123", "vikas": "vikas123",
     "ananya": "ananya123", "karan": "karan123", "pooja": "pooja123", "rahul": "rahul123" ,
-    "rik": "rik789", "anshu": "anshu123", "yoshita": "yoshi123","shouvik": "shouvik123", "ridhibrata": "ridhi123"
+    "rik": "rik789", "anshu": "anshu123", "yoshita": "yoshi123","shouvik": "shouvik123", "ridhibrata": "ridhi123" ,"soumoda":"dada420"
     
 }
 ADMIN_USERNAME = 'admin'
